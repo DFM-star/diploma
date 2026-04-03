@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using WindowsFormsApp1.Helpers;
+using Microsoft.Data.SqlClient;
 
 namespace WindowsFormsApp1.Forms
 {
@@ -15,6 +17,7 @@ namespace WindowsFormsApp1.Forms
         public static int CurrentUserID { get; private set; }
         public static string CurrentUserRole { get; private set; }
         public static string CurrentUsername { get; private set; }
+
         public LoginForm()
         {
             InitializeComponent();
@@ -25,20 +28,36 @@ namespace WindowsFormsApp1.Forms
             string username = txtUsername.Text.Trim();
             string password = txtPassword.Text;
 
-            if (username == "admin" && password == "admin")
+            try
             {
-                CurrentUserID = 1;
-                CurrentUserRole = "Admin";
-                CurrentUsername = "Администратор";
+                string query = "SELECT UserID, Role, FullName FROM Users WHERE Username=@user AND PasswordHash=@pass";
+                DataTable dt = DatabaseHelper.ExecuteQuery(query, new SqlParameter[] {
+                    new SqlParameter("@user", username),
+                    new SqlParameter("@pass", password)
+                });
 
-                this.Hide();
-                MainForm mainForm = new MainForm();
-                mainForm.Show();
+                if (dt.Rows.Count > 0)
+                {
+                    CurrentUserID = Convert.ToInt32(dt.Rows[0]["UserID"]);
+                    CurrentUserRole = dt.Rows[0]["Role"].ToString();
+                    CurrentUsername = dt.Rows[0]["FullName"].ToString();
+
+                    DatabaseHelper.LogAction(CurrentUserID, "Login", "Users", CurrentUserID);
+
+                    this.Hide();
+                    MainForm mainForm = new MainForm();
+                    mainForm.Show();
+                }
+                else
+                {
+                    MessageBox.Show("Неверный логин или пароль!", "Ошибка",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("Неверный логин или пароль!", "Ошибка",
-                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"Ошибка подключения к БД: {ex.Message}\n\nПроверьте, что SQL Server запущен и БД создана.",
+                    "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }

@@ -10,8 +10,7 @@ namespace WindowsFormsApp1.Helpers
 {
     public static class DatabaseHelper
     {
-        private static string connectionString = "";
-
+        private static string connectionString = "Data Source=CLASS14-49\\MSSQLSERVER11;Database=CRMDatabase;Integrated Security=True;Connect Timeout=30;Encrypt=True;Trust Server Certificate=True;Application Intent=ReadWrite;Multi Subnet Failover=False";
         public static SqlConnection GetConnection()
         {
             return new SqlConnection(connectionString);
@@ -48,6 +47,19 @@ namespace WindowsFormsApp1.Helpers
                 }
             }
         }
+        public static void LogAction(int userId, string action, string tableName, int recordId)
+        {
+            string query = "INSERT INTO Logs (UserID, Action, TableName, RecordID) VALUES (@uid, @act, @tbl, @rid)";
+            ExecuteNonQuery(query, new SqlParameter[] {
+                new SqlParameter("@uid", userId),
+                new SqlParameter("@act", action),
+                new SqlParameter("@tbl", tableName),
+                new SqlParameter("@rid", recordId)
+            });
+        }
     }
 }
+
+    
+
 

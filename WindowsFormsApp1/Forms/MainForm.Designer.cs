@@ -75,16 +75,19 @@
             this.btnAddClient.Location = new System.Drawing.Point(120, 410);
             this.btnAddClient.Size = new System.Drawing.Size(100, 35);
             this.btnAddClient.Text = "Добавить";
+            this.btnAddClient.Click += new System.EventHandler(this.btnAddClient_Click);
 
             // btnEditClient
             this.btnEditClient.Location = new System.Drawing.Point(228, 410);
             this.btnEditClient.Size = new System.Drawing.Size(100, 35);
             this.btnEditClient.Text = "Изменить";
+            this.btnEditClient.Click += new System.EventHandler(this.btnEditClient_Click);
 
             // btnDeleteClient
             this.btnDeleteClient.Location = new System.Drawing.Point(336, 410);
             this.btnDeleteClient.Size = new System.Drawing.Size(100, 35);
             this.btnDeleteClient.Text = "Удалить";
+            this.btnDeleteClient.Click += new System.EventHandler(this.btnDeleteClient_Click);
 
             // btnExit
             this.btnExit.Location = new System.Drawing.Point(772, 410);

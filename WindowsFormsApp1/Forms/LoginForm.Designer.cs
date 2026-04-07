@@ -40,64 +40,72 @@
             this.lblPassword = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
-            // lblUsername
-            // 
-            this.lblUsername.AutoSize = true;
-            this.lblUsername.Location = new System.Drawing.Point(30, 30);
-            this.lblUsername.Name = "lblUsername";
-            this.lblUsername.Size = new System.Drawing.Size(55, 17);
-            this.lblUsername.TabIndex = 0;
-            this.lblUsername.Text = "Логин:";
-            // 
             // txtUsername
             // 
-            this.txtUsername.Location = new System.Drawing.Point(100, 27);
+            this.txtUsername.Location = new System.Drawing.Point(75, 22);
+            this.txtUsername.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txtUsername.Name = "txtUsername";
-            this.txtUsername.Size = new System.Drawing.Size(180, 22);
+            this.txtUsername.Size = new System.Drawing.Size(136, 20);
             this.txtUsername.TabIndex = 1;
-            // 
-            // lblPassword
-            // 
-            this.lblPassword.AutoSize = true;
-            this.lblPassword.Location = new System.Drawing.Point(30, 70);
-            this.lblPassword.Name = "lblPassword";
-            this.lblPassword.Size = new System.Drawing.Size(61, 17);
-            this.lblPassword.TabIndex = 2;
-            this.lblPassword.Text = "Пароль:";
             // 
             // txtPassword
             // 
-            this.txtPassword.Location = new System.Drawing.Point(100, 67);
+            this.txtPassword.Location = new System.Drawing.Point(75, 54);
+            this.txtPassword.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txtPassword.Name = "txtPassword";
-            this.txtPassword.Size = new System.Drawing.Size(180, 22);
+            this.txtPassword.Size = new System.Drawing.Size(136, 20);
             this.txtPassword.TabIndex = 3;
             this.txtPassword.UseSystemPasswordChar = true;
             // 
             // btnLogin
             // 
-            this.btnLogin.Location = new System.Drawing.Point(100, 110);
+            this.btnLogin.Location = new System.Drawing.Point(75, 89);
+            this.btnLogin.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnLogin.Name = "btnLogin";
-            this.btnLogin.Size = new System.Drawing.Size(100, 35);
+            this.btnLogin.Size = new System.Drawing.Size(75, 28);
             this.btnLogin.TabIndex = 4;
             this.btnLogin.Text = "Вход";
             this.btnLogin.UseVisualStyleBackColor = true;
             this.btnLogin.Click += new System.EventHandler(this.btnLogin_Click);
             // 
-            // FormLogin
+            // lblUsername
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.lblUsername.AutoSize = true;
+            this.lblUsername.Location = new System.Drawing.Point(22, 24);
+            this.lblUsername.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblUsername.Name = "lblUsername";
+            this.lblUsername.Size = new System.Drawing.Size(41, 13);
+            this.lblUsername.TabIndex = 0;
+            this.lblUsername.Text = "Логин:";
+            // 
+            // lblPassword
+            // 
+            this.lblPassword.AutoSize = true;
+            this.lblPassword.Location = new System.Drawing.Point(22, 57);
+            this.lblPassword.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblPassword.Name = "lblPassword";
+            this.lblPassword.Size = new System.Drawing.Size(48, 13);
+            this.lblPassword.TabIndex = 2;
+            this.lblPassword.Text = "Пароль:";
+            // 
+            // LoginForm
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(320, 180);
+            this.ClientSize = new System.Drawing.Size(240, 146);
             this.Controls.Add(this.btnLogin);
             this.Controls.Add(this.txtPassword);
             this.Controls.Add(this.lblPassword);
             this.Controls.Add(this.txtUsername);
             this.Controls.Add(this.lblUsername);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.MaximizeBox = false;
+            this.Name = "LoginForm";
             this.Text = "Вход в CRM";
             this.ResumeLayout(false);
             this.PerformLayout();
+
         }
 
         #endregion

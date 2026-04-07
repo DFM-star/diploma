@@ -4,13 +4,25 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Data;
+using System.Configuration;
 using Microsoft.Data.SqlClient;
 
 namespace WindowsFormsApp1.Helpers
 {
     public static class DatabaseHelper
     {
-        private static string connectionString = "Data Source=CLASS14-49\\MSSQLSERVER11;Database=CRMDatabase;Integrated Security=True;Connect Timeout=30;Encrypt=True;Trust Server Certificate=True;Application Intent=ReadWrite;Multi Subnet Failover=False";
+        private static string connectionString;
+
+        static DatabaseHelper()
+        {
+            connectionString = ConfigurationManager.ConnectionStrings["CRMConnection"]?.ConnectionString;
+
+            if (string.IsNullOrEmpty(connectionString))
+            {
+                throw new Exception("Строка подключения не найдена в app.config. Убедитесь, что добавлен элемент <connectionStrings> с именем 'CRMConnection'");
+            }
+        }
+
         public static SqlConnection GetConnection()
         {
             return new SqlConnection(connectionString);

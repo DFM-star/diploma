@@ -11,6 +11,7 @@
         private System.Windows.Forms.Button btnAddClient;
         private System.Windows.Forms.Button btnEditClient;
         private System.Windows.Forms.Button btnDeleteClient;
+        private System.Windows.Forms.Button btnMessages;
         private System.Windows.Forms.Button btnExit;
         private System.Windows.Forms.Label lblWelcome;
         private System.Windows.Forms.Label lblStatus;
@@ -42,6 +43,7 @@
             this.btnAddClient = new System.Windows.Forms.Button();
             this.btnEditClient = new System.Windows.Forms.Button();
             this.btnDeleteClient = new System.Windows.Forms.Button();
+            this.btnMessages = new System.Windows.Forms.Button();
             this.btnExit = new System.Windows.Forms.Button();
             this.lblWelcome = new System.Windows.Forms.Label();
             this.lblStatus = new System.Windows.Forms.Label();
@@ -95,6 +97,12 @@
             this.btnExit.Text = "Выход";
             this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
 
+            // btnMessages
+            this.btnMessages.Location = new System.Drawing.Point(444, 410);
+            this.btnMessages.Size = new System.Drawing.Size(100, 35);
+            this.btnMessages.Text = "История сообщений";
+            this.btnMessages.Click += new System.EventHandler(this.btnMessages_Click);
+
             // lblStatus
             this.lblStatus.AutoSize = true;
             this.lblStatus.Location = new System.Drawing.Point(12, 455);
@@ -110,6 +118,7 @@
             this.Controls.Add(this.btnRefresh);
             this.Controls.Add(this.dgvClients);
             this.Controls.Add(this.lblWelcome);
+            this.Controls.Add(this.btnMessages);
             this.Text = "CRM Система - Управление клиентами";
 
             ((System.ComponentModel.ISupportInitialize)(this.dgvClients)).EndInit();

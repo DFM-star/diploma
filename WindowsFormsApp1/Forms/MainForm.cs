@@ -162,6 +162,22 @@ namespace WindowsFormsApp1
                 }
             }
         }
+        private void btnMessages_Click(object sender, EventArgs e)
+        {
+            if (dgvClients.CurrentRow == null)
+            {
+                MessageBox.Show("Выберите клиента!", "Внимание",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            int clientId = Convert.ToInt32(dgvClients.CurrentRow.Cells["ClientID"].Value);
+            string clientName = dgvClients.CurrentRow.Cells["FullName"].Value.ToString();
+
+            MessageHistoryForm msgForm = new MessageHistoryForm(clientId, clientName);
+            msgForm.ShowDialog();
+        }
+
 
     }
 }

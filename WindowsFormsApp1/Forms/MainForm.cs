@@ -29,9 +29,11 @@ namespace WindowsFormsApp1
         {
             if (LoginForm.CurrentUserRole == "Client")
             {
+                // допуски клиентов
                 btnAddClient.Enabled = false;
                 btnEditClient.Enabled = false;
                 btnDeleteClient.Enabled = false;
+                btnMessages.Enabled = false;
             }
         }
 

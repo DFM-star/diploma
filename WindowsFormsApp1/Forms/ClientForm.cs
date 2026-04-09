@@ -18,10 +18,6 @@ namespace WindowsFormsApp1.Forms
 {
     public partial class ClientForm : Form
     {
-        public ClientForm()
-        {
-            InitializeComponent();
-        }
         private int? editClientId = null;
 
         //Свойства
@@ -45,6 +41,7 @@ namespace WindowsFormsApp1.Forms
             else
             {
                 this.Text = "Добавление клиента";
+                dtpReminder.Value = DateTime.Now.AddHours(1);
             }
         }
 
@@ -71,6 +68,19 @@ namespace WindowsFormsApp1.Forms
             }
         }
 
+        private bool IsValidEmail(string email)
+        {
+            try
+            {
+                var addr = new System.Net.Mail.MailAddress(email);
+                return addr.Address == email;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
         private void btnSave_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrWhiteSpace(txtFullName.Text))
@@ -79,10 +89,29 @@ namespace WindowsFormsApp1.Forms
                     MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
+            if (!string.IsNullOrEmpty(txtEmail.Text) && !IsValidEmail(txtEmail.Text))
+            {
+                MessageBox.Show("Введите корректный email!", "Ошибка",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            if (chkReminder.Checked && dtpReminder.Value <= DateTime.Now)
+            {
+                MessageBox.Show("Дата напоминания должна быть в будущем!", "Ошибка",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
 
             DialogResult = DialogResult.OK;
             Close();
         }
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            DialogResult = DialogResult.Cancel;
+            Close();
+        }
+
 
         private void chkReminder_CheckedChanged(object sender, EventArgs e)
         {
